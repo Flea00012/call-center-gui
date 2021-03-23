@@ -30,6 +30,9 @@ public class Controller {
     Lock lock = new ReentrantLock();
 
     public void CallButtonClicked() {
+        boolean calling = true;
+
+        CallButton.setDisable(true);
 
 
         Runnable producer = () -> {
@@ -103,7 +106,6 @@ public class Controller {
         executorService.submit(interruptingCall);
 
         executorService.shutdownNow();
-
 
 
     }
