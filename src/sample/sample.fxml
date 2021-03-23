@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
 <GridPane fx:controller="sample.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"  >
 
@@ -11,9 +12,10 @@
     <Label text="Thermo Calc Call center GUI" GridPane.columnIndex="0" GridPane.rowIndex="0" textFill="green" minHeight="50" />
 
 
-    <Button text="Call" GridPane.rowIndex="1" GridPane.columnIndex="0"  />
-    <Button text="Take Call" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-    <Button text="Escalate Call" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+    <Button text="Call" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#CallButtonClicked" />
+    <Button text="Take Call" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#TakeCallButtonClicked"/>
+    <Button text="Escalate Call" GridPane.rowIndex="1" GridPane.columnIndex="2" onAction="#EscalateCallButtonClicked"/>
+
 
 
     <Label text="Caller Settings" textFill="green" GridPane.rowIndex="3"  />
