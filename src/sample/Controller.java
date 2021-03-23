@@ -1,5 +1,10 @@
 package sample;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -8,6 +13,16 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Controller {
+
+    @FXML
+    private Button CallButton;
+
+    @FXML
+    private Button TakeCallButton;
+
+    @FXML
+    private Button EscalateCallButton;
+
 
     ArrayBlockingQueue<Integer> arrayBlockingQueue = new ArrayBlockingQueue<>(5);
     ExecutorService executorService = Executors.newFixedThreadPool(2);
@@ -60,7 +75,7 @@ public class Controller {
         executorService.submit(consumer);
         executorService.submit(producer);
 
-        executorService.shutdown();
+        executorService.shutdownNow();
 
 
     }
@@ -87,7 +102,7 @@ public class Controller {
 
         executorService.submit(interruptingCall);
 
-        executorService.shutdown();
+        executorService.shutdownNow();
 
 
 

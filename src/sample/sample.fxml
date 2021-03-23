@@ -12,9 +12,9 @@
     <Label text="Thermo Calc Call center GUI" GridPane.columnIndex="0" GridPane.rowIndex="0" textFill="green" minHeight="50" />
 
 
-    <Button text="Call" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#CallButtonClicked" />
-    <Button text="Take Call" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#TakeCallButtonClicked"/>
-    <Button text="Escalate Call" GridPane.rowIndex="1" GridPane.columnIndex="2" onAction="#EscalateCallButtonClicked"/>
+    <Button fx:id="CallButton" text="Call" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#CallButtonClicked" />
+    <Button fx:id="TakeCallButton"  text="Take Call" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#TakeCallButtonClicked"/>
+    <Button fx:id="EscalateCallButton"  text="Escalate Call" GridPane.rowIndex="1" GridPane.columnIndex="2" onAction="#EscalateCallButtonClicked"/>
 
 
 
