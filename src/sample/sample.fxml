@@ -1,10 +1,8 @@
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.GridPane?>
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
 <GridPane fx:controller="sample.Controller"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"  >
 
@@ -13,16 +11,21 @@
 
 
     <Button fx:id="CallButton" text="Call" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#CallButtonClicked" />
+    <Button fx:id="EndCallButton"  text="End-Call" GridPane.rowIndex="2" GridPane.columnIndex="0" onAction="#EndCallButtonClicked"/>
+
     <Button fx:id="TakeCallButton"  text="Take Call" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#TakeCallButtonClicked"/>
     <Button fx:id="EscalateCallButton"  text="Escalate Call" GridPane.rowIndex="1" GridPane.columnIndex="2" onAction="#EscalateCallButtonClicked"/>
 
 
 
-    <Label text="Caller Settings" textFill="green" GridPane.rowIndex="3"  />
 
-    <RadioButton text="Away for the day." GridPane.rowIndex="4" />
-    <RadioButton text="On Lunch." GridPane.rowIndex="5" />
-    <RadioButton text="In meeting." GridPane.rowIndex="6" />
+    <Label text="Caller Settings" textFill="green" GridPane.rowIndex="3"  />
+    <Label fx:id="Status" text="Agent is at present" textFill="green" GridPane.rowIndex="3" GridPane.columnIndex="3" visible="false" />
+
+
+    <RadioButton fx:id="AwayRadio" text="Away for the day." GridPane.rowIndex="4"  onAction="#AwayRadioClicked"/>
+    <RadioButton fx:id="LunchRadio" text="On Lunch." GridPane.rowIndex="5" onAction="#LunchRadioClicked" />
+    <RadioButton fx:id="MeetingRadio" text="In meeting." GridPane.rowIndex="6" onAction="#MeetingRadioClicked"/>
 
 
 

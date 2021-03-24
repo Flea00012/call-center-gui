@@ -1,10 +1,9 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -12,6 +11,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+
+/**
+ * Class specifies the functions that Controller should perform to execute User Commands
+ *
+ * The {@code Controller} class defines the Controller responsibilities in the MVC model,
+ * which allows the FXML file to describe the User Interface. The result is a program
+ * that keeps business logic and functions separate from the User Interface according
+ * to the MVC design pattern.
+ *
+ * @author leefowler
+ */
 public class Controller {
 
     @FXML
@@ -30,7 +40,6 @@ public class Controller {
     Lock lock = new ReentrantLock();
 
     public void CallButtonClicked() {
-        boolean calling = true;
 
         CallButton.setDisable(true);
 
@@ -83,6 +92,14 @@ public class Controller {
 
     }
 
+    public void EndCallButtonClicked(ActionEvent actionEvent) {
+
+        executorService.shutdownNow();
+        System.out.println("Call ended and connection shutdown.");
+        System.exit(0);
+    }
+
+
     public void TakeCallButtonClicked() {
         System.out.println("Call is being handled");
 
@@ -103,18 +120,41 @@ public class Controller {
             }
         };
 
+
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                System.out.println("A critical error happened in the thread "
+                        + t.getName() + " and the error is " + e.getMessage());
+            }
+        });
+
         executorService.submit(interruptingCall);
 
         executorService.shutdownNow();
 
-
     }
 
     public void EscalateCallButtonClicked() {
-        System.out.println("Call is being escalated");
+        System.out.println("Call is being escalated to my supervisor.");
         Thread.currentThread().interrupt();
 
     }
 
+    public void MeetingRadioClicked(ActionEvent actionEvent) {
+        EscalateCallButton.setDisable(true);
+        TakeCallButton.setDisable(true);
+    }
+
+
+    public void LunchRadioClicked(ActionEvent actionEvent) {
+        EscalateCallButton.setDisable(true);
+        TakeCallButton.setDisable(true);
+    }
+
+    public void AwayRadioClicked(ActionEvent actionEvent) {
+        EscalateCallButton.setDisable(true);
+        TakeCallButton.setDisable(true);
+    }
 }
 
