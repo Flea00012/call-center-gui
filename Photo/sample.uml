@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>sample</OriginalElement>
+  <nodes>
+    <node x="184.0" y="410.0">sample.Main</node>
+    <node x="82.40046296296299" y="89.0">sample.TheObserver</node>
+    <node x="139.60416666666669" y="247.0">sample.EmployeeObservable</node>
+    <node x="234.400462962963" y="168.0">sample.EmployeeType</node>
+    <node x="10.5" y="168.0">sample.EmployeeObserver</node>
+    <node x="0.0" y="410.0">sample.ControllerTest</node>
+    <node x="32.10416666666666" y="0.0">sample.EmployeeStatus</node>
+    <node x="59.31712962962965" y="336.0">sample.Controller</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="sample.Controller" target="sample.EmployeeStatus">
+      <point x="-47.08333333333333" y="-14.5" />
+      <point x="68.73379629629632" y="316.0" />
+      <point x="0.0" y="316.0" />
+      <point x="0.0" y="69.0" />
+      <point x="43.687499999999986" y="69.0" />
+      <point x="-57.91666666666667" y="14.5" />
+    </edge>
+    <edge source="sample.TheObserver" target="sample.EmployeeStatus">
+      <point x="0.0" y="-14.5" />
+      <point x="142.400462962963" y="69.0" />
+      <point x="113.1875" y="69.0" />
+      <point x="11.583333333333343" y="14.5" />
+    </edge>
+    <edge source="sample.Controller" target="sample.EmployeeType">
+      <point x="47.08333333333334" y="-14.5" />
+      <point x="162.900462962963" y="316.0" />
+      <point x="329.525462962963" y="316.0" />
+      <point x="329.525462962963" y="227.0" />
+      <point x="339.400462962963" y="227.0" />
+      <point x="42.0" y="14.5" />
+    </edge>
+    <edge source="sample.Controller" target="sample.EmployeeObservable">
+      <point x="9.416666666666657" y="-14.5" />
+      <point x="125.2337962962963" y="296.0" />
+      <point x="180.85416666666669" y="296.0" />
+      <point x="-41.25" y="14.5" />
+    </edge>
+    <edge source="sample.Controller" target="sample.EmployeeObserver">
+      <point x="-9.416666666666657" y="-14.5" />
+      <point x="106.40046296296299" y="296.0" />
+      <point x="57.810185185185205" y="296.0" />
+      <point x="57.810185185185205" y="227.0" />
+      <point x="67.5" y="227.0" />
+      <point x="-19.0" y="14.5" />
+    </edge>
+    <edge source="sample.EmployeeObservable" target="sample.EmployeeType">
+      <point x="41.25" y="-14.5" />
+      <point x="263.3541666666667" y="227.0" />
+      <point x="255.400462962963" y="227.0" />
+      <point x="-42.0" y="14.5" />
+    </edge>
+    <edge source="sample.EmployeeObservable" target="sample.EmployeeObserver">
+      <point x="-68.75" y="-14.5" />
+      <point x="153.35416666666669" y="227.0" />
+      <point x="105.5" y="227.0" />
+      <point x="19.0" y="14.5" />
+    </edge>
+    <edge source="sample.EmployeeObserver" target="sample.EmployeeStatus">
+      <point x="0.0" y="-14.5" />
+      <point x="86.5" y="143.0" />
+      <point x="71.90046296296299" y="143.0" />
+      <point x="71.90046296296299" y="69.0" />
+      <point x="90.02083333333334" y="69.0" />
+      <point x="-11.583333333333314" y="14.5" />
+    </edge>
+    <edge source="sample.EmployeeObserver" target="sample.TheObserver">
+      <point x="50.66666666666666" y="-14.5" />
+      <point x="137.16666666666666" y="143.0" />
+      <point x="142.400462962963" y="143.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="sample.EmployeeObservable" target="sample.EmployeeStatus">
+      <point x="13.75" y="-14.5" />
+      <point x="235.85416666666669" y="227.0" />
+      <point x="223.900462962963" y="227.0" />
+      <point x="223.900462962963" y="49.0" />
+      <point x="159.52083333333334" y="49.0" />
+      <point x="57.916666666666686" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="400.5" y="165.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
