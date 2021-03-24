@@ -1,4 +1,4 @@
-#Call center GUI in JavaFx
+# Call center GUI in JavaFx
 
 ## This project is an extension of the call center project. It is a simple GUI made inside the sample.fxml file.
 
@@ -13,4 +13,4 @@ Here a call center GUI is made that allows the user to make a call to the call c
  
  ## GUI display image
  
- ![alt text](https://github.com/Flea00012/call-center-gui/blob/master/Photo/GUIdesignCallcenter.tif)
+ ![alt text](https://github.com/Flea00012/call-center-gui/blob/master/Photo/Package%20sample.svg)
