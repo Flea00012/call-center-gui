@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Class specifies the functions that Controller should perform to execute User Commands
- *
+ * <p>
  * The {@code Controller} class defines the Controller responsibilities in the MVC model,
  * which allows the FXML file to describe the User Interface. The result is a program
  * that keeps business logic and functions separate from the User Interface according
@@ -36,6 +36,11 @@ public class Controller {
 
     ArrayBlockingQueue<Integer> arrayBlockingQueue = new ArrayBlockingQueue<>(5);
     ExecutorService executorService = Executors.newFixedThreadPool(2);
+
+
+    EmployeeObservable employeeObservable = new EmployeeObservable(EmployeeType.FRESHER);
+    EmployeeObserver employeeObserver = new EmployeeObserver();
+
 
     Lock lock = new ReentrantLock();
 
@@ -72,9 +77,10 @@ public class Controller {
                 try {
 
                     Integer poll;
+                    TimeUnit.MILLISECONDS.sleep(2000);
                     poll = arrayBlockingQueue.take();
                     System.out.println("Call #" + poll + " taken from the queue and handled.");
-                    TimeUnit.MILLISECONDS.sleep(1000);
+                    TimeUnit.MILLISECONDS.sleep(2000);
 
 
                 } catch (Exception e) {
@@ -110,7 +116,7 @@ public class Controller {
 
                     Integer poll;
                     poll = arrayBlockingQueue.take();
-                    System.out.println("Call is being interrupted");
+                    System.out.println("Consumer Thread was being interrupt when I took the Call.");
                     TimeUnit.MILLISECONDS.sleep(1000);
 
 
@@ -124,8 +130,8 @@ public class Controller {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread t, Throwable e) {
-                System.out.println("A critical error happened in the thread "
-                        + t.getName() + " and the error is " + e.getMessage());
+                System.out.println("A default uncaught exception was thrown on "
+                        + t.getName() + " and the error is :" + e.getMessage());
             }
         });
 
@@ -136,7 +142,7 @@ public class Controller {
     }
 
     public void EscalateCallButtonClicked() {
-        System.out.println("Call is being escalated to my supervisor.");
+        System.out.println("Call is being escalated to my supervisor. I am unavailable at present.");
         Thread.currentThread().interrupt();
 
     }
@@ -144,17 +150,35 @@ public class Controller {
     public void MeetingRadioClicked(ActionEvent actionEvent) {
         EscalateCallButton.setDisable(true);
         TakeCallButton.setDisable(true);
+
+        employeeObservable.addEmployeeObserver(employeeObserver);
+        employeeObservable.setEmployeeStatusUpdate(EmployeeStatus.IN_A_MEETING);
+        System.out.println("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
+
+
     }
 
 
     public void LunchRadioClicked(ActionEvent actionEvent) {
         EscalateCallButton.setDisable(true);
         TakeCallButton.setDisable(true);
+
+        employeeObservable.addEmployeeObserver(employeeObserver);
+        employeeObservable.setEmployeeStatusUpdate(EmployeeStatus.ON_LUNCH);
+        System.out.println("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
+
+
     }
 
     public void AwayRadioClicked(ActionEvent actionEvent) {
         EscalateCallButton.setDisable(true);
         TakeCallButton.setDisable(true);
+
+        employeeObservable.addEmployeeObserver(employeeObserver);
+        employeeObservable.setEmployeeStatusUpdate(EmployeeStatus.GONE_FOR_THE_DAY);
+        System.out.println("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
+
+
     }
 }
 
