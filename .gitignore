@@ -2,4 +2,6 @@
 .idea
 out
 .git
+target/
+gridpanestudy.iml
 
