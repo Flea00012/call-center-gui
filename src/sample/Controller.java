@@ -33,7 +33,10 @@ public class Controller {
     @FXML
     private Button EscalateCallButton;
 
-
+    /**
+     * ArrayBlockingQueue is used for the Producer - Consumer pattern and executorService
+     * is used to control execution of the threads.
+     */
     ArrayBlockingQueue<Integer> arrayBlockingQueue = new ArrayBlockingQueue<>(5);
     ExecutorService executorService = Executors.newFixedThreadPool(2);
 
@@ -53,11 +56,9 @@ public class Controller {
 
             int i = 0;
 
-            boolean terminate = false;
             while (true) {
 
                 try {
-
                     arrayBlockingQueue.put(++i);
                     System.out.println("Call #" + i + " added to queue ");
                     TimeUnit.MILLISECONDS.sleep(1000);
@@ -81,7 +82,6 @@ public class Controller {
                     poll = arrayBlockingQueue.take();
                     System.out.println("Call #" + poll + " taken from the queue and handled.");
                     TimeUnit.MILLISECONDS.sleep(2000);
-
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -107,18 +107,21 @@ public class Controller {
 
 
     public void TakeCallButtonClicked() {
-        System.out.println("Call is being handled");
-
+        System.out.println("Call is being handled by me.");
 
         Runnable interruptingCall = () -> {
-            while (true) {
+            boolean terminate = false;
+
+            while (!terminate) {
                 try {
-
-                    Integer poll;
-                    poll = arrayBlockingQueue.take();
-                    System.out.println("Consumer Thread was being interrupt when I took the Call.");
-                    TimeUnit.MILLISECONDS.sleep(1000);
-
+                    synchronized (this) {
+                        Integer poll;
+                        poll = arrayBlockingQueue.take();
+                        System.out.println("Consumer Thread was being interrupt when I took the Call #" + poll);
+                        TimeUnit.MILLISECONDS.sleep(1000);
+                        System.out.println("Call is completed for call #" + poll);
+                        terminate = true;
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -126,24 +129,55 @@ public class Controller {
             }
         };
 
+        Thread takenCall = new Thread((interruptingCall));
+        takenCall.setDaemon(true);
 
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            @Override
-            public void uncaughtException(Thread t, Throwable e) {
-                System.out.println("A default uncaught exception was thrown on "
-                        + t.getName() + " and the error is :" + e.getMessage());
-            }
-        });
+        try {
+            takenCall.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        executorService.submit(interruptingCall);
+        takenCall.start();
 
-        executorService.shutdownNow();
 
     }
 
     public void EscalateCallButtonClicked() {
         System.out.println("Call is being escalated to my supervisor. I am unavailable at present.");
-        Thread.currentThread().interrupt();
+
+
+        Runnable escalatingCall = () -> {
+            boolean terminate = false;
+
+            while (!terminate) {
+                try {
+                    synchronized (this) {
+                        Integer poll;
+                        poll = arrayBlockingQueue.take();
+                        System.out.println("Consumer Thread was being interrupt when I escalated the Call #" + poll);
+                        System.out.println("Call escalation of call #" + poll + " to my supervisor.");
+                        TimeUnit.MILLISECONDS.sleep(1000);
+                        terminate = true;
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Thread passedCall = new Thread((escalatingCall));
+        passedCall.setDaemon(true);
+
+        try {
+            passedCall.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        passedCall.start();
+
 
     }
 
