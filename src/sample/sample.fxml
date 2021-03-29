@@ -5,20 +5,20 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"  >
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"  style="-fx-background-color: #fffdd1">
 
 
-    <Label text="Thermo-Calc Call Center GUI" GridPane.columnIndex="3" GridPane.rowIndex="0" textFill="green" minHeight="50" />
+    <Label text="Thermo-Calc Call Center GUI" GridPane.columnIndex="3" GridPane.rowIndex="0" textFill="black" minHeight="50" style="-fx-font-size: 23; -fx-font-family: Helvetica "/>
 
 
-    <Label text="Caller Settings" textFill="green" GridPane.rowIndex="1"  GridPane.columnIndex="0"/>
-    <Button fx:id="CallButton" text="Start Calls" GridPane.rowIndex="2" GridPane.columnIndex="0" onAction="#CallButtonClicked" />
-    <Button fx:id="EndCallButton"  text="End Calls" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#EndCallButtonClicked"/>
+    <Label text="Caller Settings" textFill="black" GridPane.rowIndex="1"  GridPane.columnIndex="0" style="-fx-font-family: Helvetica; -fx-font-size: 20"/>
+    <Button fx:id="CallButton" text="Start Calls" GridPane.rowIndex="2" GridPane.columnIndex="0" onAction="#CallButtonClicked" style="-fx-background-color: #fcae1e"/>
+    <Button fx:id="EndCallButton" textFill="aliceblue" text="End Calls" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#EndCallButtonClicked" style="-fx-background-color: #ca3433"/>
 
 
-    <Label fx:id="Status" text="Employee controls" textFill="green" GridPane.rowIndex="1"  GridPane.columnIndex="4" />
-    <Button fx:id="TakeCallButton"  text="Take Call" GridPane.rowIndex="2" GridPane.columnIndex="4" onAction="#TakeCallButtonClicked"/>
-    <Button fx:id="EscalateCallButton"  text="Escalate Call" GridPane.rowIndex="3" GridPane.columnIndex="4" onAction="#EscalateCallButtonClicked"/>
+    <Label fx:id="Status" text="Employee controls" textFill="black" GridPane.rowIndex="1"  GridPane.columnIndex="4" style="-fx-font-family: Helvetica; -fx-font-size: 20"/>
+    <Button fx:id="TakeCallButton" textFill="black" text="Take Call" GridPane.rowIndex="2" GridPane.columnIndex="4" onAction="#TakeCallButtonClicked" style="-fx-background-color: #008ecc"/>
+    <Button fx:id="EscalateCallButton" textFill="black" text="Escalate Call" GridPane.rowIndex="3" GridPane.columnIndex="4" onAction="#EscalateCallButtonClicked" style="-fx-background-color: #be93d4"/>
 
 
 
