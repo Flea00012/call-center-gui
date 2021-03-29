@@ -3,6 +3,7 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -32,6 +33,15 @@ public class Controller {
 
     @FXML
     private Button EscalateCallButton;
+
+    @FXML
+    private CheckBox AwayRadioClicked;
+
+    @FXML
+    private CheckBox LunchRadioClicked;
+
+    @FXML
+    private CheckBox MeetingRadioClicked;
 
     /**
      * ArrayBlockingQueue is used for the Producer - Consumer pattern and executorService
@@ -182,8 +192,10 @@ public class Controller {
     }
 
     public void MeetingRadioClicked(ActionEvent actionEvent) {
-        EscalateCallButton.setDisable(true);
-        TakeCallButton.setDisable(true);
+
+            EscalateCallButton.setDisable(true);
+            TakeCallButton.setDisable(true);
+
 
         employeeObservable.addEmployeeObserver(employeeObserver);
         employeeObservable.setEmployeeStatusUpdate(EmployeeStatus.IN_A_MEETING);
