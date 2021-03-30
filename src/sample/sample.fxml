@@ -30,6 +30,7 @@
     <RadioButton fx:id="AwayRadio" text="Away for the day." GridPane.rowIndex="4" GridPane.columnIndex="4" onAction="#AwayRadioClicked" toggleGroup="$EmployeeStatus"/>
     <RadioButton fx:id="LunchRadio" text="On Lunch." GridPane.rowIndex="5" onAction="#LunchRadioClicked" GridPane.columnIndex="4" toggleGroup="$EmployeeStatus"/>
     <RadioButton fx:id="MeetingRadio" text="In meeting." GridPane.rowIndex="6" onAction="#MeetingRadioClicked" GridPane.columnIndex="4" toggleGroup="$EmployeeStatus"/>
+    <RadioButton fx:id="AvailableRadio" text="Available for calls." GridPane.rowIndex="7" onAction="#AvailableRadioClicked" GridPane.columnIndex="4" toggleGroup="$EmployeeStatus"/>
 
 
 

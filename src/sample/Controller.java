@@ -43,6 +43,9 @@ public class Controller {
     @FXML
     private CheckBox MeetingRadioClicked;
 
+    @FXML
+    private CheckBox AvailableRadioClicked;
+
     /**
      * ArrayBlockingQueue is used for the Producer - Consumer pattern and executorService
      * is used to control execution of the threads.
@@ -222,6 +225,17 @@ public class Controller {
 
         employeeObservable.addEmployeeObserver(employeeObserver);
         employeeObservable.setEmployeeStatusUpdate(EmployeeStatus.GONE_FOR_THE_DAY);
+        System.out.println("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
+
+
+    }
+
+    public void AvailableRadioClicked(ActionEvent actionEvent) {
+        EscalateCallButton.setDisable(false);
+        TakeCallButton.setDisable(false);
+
+        employeeObservable.addEmployeeObserver(employeeObserver);
+        employeeObservable.setEmployeeStatusUpdate(EmployeeStatus.AVAILABLE);
         System.out.println("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
 
 
