@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -58,6 +60,8 @@ public class Controller {
     EmployeeObserver employeeObserver = new EmployeeObserver();
 
 
+    private static final Logger logger = LoggerFactory.getLogger(Controller.class);
+
     Lock lock = new ReentrantLock();
 
     public void CallButtonClicked() {
@@ -73,7 +77,7 @@ public class Controller {
 
                 try {
                     arrayBlockingQueue.put(++i);
-                    System.out.println("Call #" + i + " added to queue ");
+                    logger.info("Call #" + i + " added to queue ");
                     TimeUnit.MILLISECONDS.sleep(1000);
 
                 } catch (InterruptedException e) {
@@ -93,7 +97,7 @@ public class Controller {
                     Integer poll;
                     TimeUnit.MILLISECONDS.sleep(2000);
                     poll = arrayBlockingQueue.take();
-                    System.out.println("Call #" + poll + " taken from the queue and handled.");
+                    logger.info("Call #" + poll + " taken from the queue and handled.");
                     TimeUnit.MILLISECONDS.sleep(2000);
 
                 } catch (Exception e) {
@@ -114,13 +118,13 @@ public class Controller {
     public void EndCallButtonClicked(ActionEvent actionEvent) {
 
         executorService.shutdownNow();
-        System.out.println("Call ended and connection shutdown.");
+        logger.info("Call ended and connection shutdown.");
         System.exit(0);
     }
 
 
     public void TakeCallButtonClicked() {
-        System.out.println("Call is being handled by me.");
+        logger.info("Call is being handled by me.");
 
         Runnable interruptingCall = () -> {
             boolean terminate = false;
@@ -130,9 +134,9 @@ public class Controller {
                     synchronized (this) {
                         Integer poll;
                         poll = arrayBlockingQueue.take();
-                        System.out.println("Consumer Thread was being interrupt when I took the Call #" + poll);
+                        logger.info("Consumer Thread was being interrupt when I took the Call #" + poll);
                         TimeUnit.MILLISECONDS.sleep(1000);
-                        System.out.println("Call is completed for call #" + poll);
+                        logger.info("Call is completed for call #" + poll);
                         terminate = true;
                     }
 
@@ -157,7 +161,7 @@ public class Controller {
     }
 
     public void EscalateCallButtonClicked() {
-        System.out.println("Call is being escalated to my supervisor. I am unavailable at present.");
+        logger.info("Call is being escalated to my supervisor. I am unavailable at present.");
 
 
         Runnable escalatingCall = () -> {
@@ -168,8 +172,8 @@ public class Controller {
                     synchronized (this) {
                         Integer poll;
                         poll = arrayBlockingQueue.take();
-                        System.out.println("Consumer Thread was being interrupt when I escalated the Call #" + poll);
-                        System.out.println("Call escalation of call #" + poll + " to my supervisor.");
+                        logger.info("Consumer Thread was being interrupt when I escalated the Call #" + poll);
+                        logger.info("Call escalation of call #" + poll + " to my supervisor.");
                         TimeUnit.MILLISECONDS.sleep(1000);
                         terminate = true;
                     }
@@ -202,7 +206,7 @@ public class Controller {
 
         employeeObservable.addEmployeeObserver(employeeObserver);
         employeeObservable.setEmployeeStatusUpdate(EmployeeStatus.IN_A_MEETING);
-        System.out.println("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
+        logger.info("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
 
 
     }
@@ -214,7 +218,7 @@ public class Controller {
 
         employeeObservable.addEmployeeObserver(employeeObserver);
         employeeObservable.setEmployeeStatusUpdate(EmployeeStatus.ON_LUNCH);
-        System.out.println("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
+        logger.info("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
 
 
     }
@@ -225,7 +229,7 @@ public class Controller {
 
         employeeObservable.addEmployeeObserver(employeeObserver);
         employeeObservable.setEmployeeStatusUpdate(EmployeeStatus.GONE_FOR_THE_DAY);
-        System.out.println("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
+        logger.info("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
 
 
     }
@@ -236,7 +240,7 @@ public class Controller {
 
         employeeObservable.addEmployeeObserver(employeeObserver);
         employeeObservable.setEmployeeStatusUpdate(EmployeeStatus.AVAILABLE);
-        System.out.println("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
+        logger.info("Employee on " + Thread.currentThread().getName() + " has set their status to: " + employeeObserver.getEmployeeStatus());
 
 
     }
